@@ -390,6 +390,7 @@ function ManilovMenu() {
     setShowDropdown(false);
     inputRef.current?.focus();
   };
+
   const sections = activeCat ? menuData.filter(c => c.id === activeCat) : menuData;
   const toggleSec = id => { setOpenSec(p => p === id ? null : id); setOpenItem(null); };
   const toggleItem = key => setOpenItem(p => p === key ? null : key);
@@ -461,26 +462,23 @@ function ManilovMenu() {
       {showDropdown && suggestions.length > 0 &&
         ReactDOM.createPortal(
           <div className="sdropdown" style={{ top: dropPos.top, left: dropPos.left, width: dropPos.width }}>
-              </div>
-            )}
-            {search.length >= 2 && suggestions.length > 0 && (
-              <div className="sdrop-section">
-                <div className="sdrop-label">Найдено</div>
-                {suggestions.map((s, i) => (
-                  <button key={i} className="sdrop-row" onMouseDown={() => handleSuggestionClick(s.label)}>
-                    <svg className="sdrop-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    <span className="sdrop-row-body">
-                      <span className="sdrop-row-name">{s.label}</span>
-                      <span className="sdrop-row-sub">{s.cat} · {s.price} р.</span>
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
+            <div className="sdrop-section">
+              <div className="sdrop-label">Найдено</div>
+              {suggestions.map((s, i) => (
+                <button key={i} className="sdrop-row" onMouseDown={() => handleSuggestionClick(s.label)}>
+                  <svg className="sdrop-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span className="sdrop-row-body">
+                    <span className="sdrop-row-name">{s.label}</span>
+                    <span className="sdrop-row-sub">{s.cat} · {s.price} р.</span>
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>,
           document.body
         )
       }
+
 
       {/* ТАБЫ */}
       {!search && (
