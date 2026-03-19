@@ -451,10 +451,7 @@ function ManilovMenu() {
               onKeyDown={e => { if (e.key === 'Enter') handleSearchSubmit(); if (e.key === 'Escape') handleClear(); }}
               autoComplete="off"
             />
-            {search
-              ? <button className="sclear" onClick={handleClear} tabIndex={0}>✕</button>
-              : <div className="search-kbd">Enter</div>
-            }
+            {search && <button className="sclear" onClick={handleClear} tabIndex={0}>✕</button>}
 
             {/* ВЫПАДАЮЩИЙ СПИСОК */}
             {showDropdown && (search.length >= 2 ? suggestions.length > 0 : history.length > 0) && (
@@ -476,24 +473,28 @@ function ManilovMenu() {
                 )}
                 {search.length >= 2 && suggestions.map((s,i) => (
                   <button key={i} className="sdrop-item" tabIndex={0} onMouseDown={() => handleSuggestionClick(s.label)}>
-                    <span className="sdrop-name">{s.label}</span>
-                    <span className="sdrop-meta">{s.cat} · {s.price} р.</span>
+                    <div className="sdrop-inner">
+                      <span className="sdrop-name">{s.label}</span>
+                      <span className="sdrop-meta">{s.cat} · {s.price} р.</span>
+                    </div>
                   </button>
                 ))}
               </div>
             )}
           </div>
 
-          {/* ФИЛЬТР ПО ЦЕНЕ */}
-          <div className="price-filter">
-            <span className="price-filter-label">До:</span>
-            {[null, 300, 500, 800, 1000].map(p => (
-              <button key={p} className={`price-chip${priceMax === p ? " active" : ""}`}
-                onClick={() => setPriceMax(p)}>
-                {p === null ? "Любая" : `${p} р.`}
-              </button>
-            ))}
-          </div>
+          {/* ФИЛЬТР ПО ЦЕНЕ — только при активном поиске */}
+          {search.trim() && (
+            <div className="price-filter">
+              <span className="price-filter-label">Цена до:</span>
+              {[null, 300, 500, 800, 1000].map(p => (
+                <button key={p} className={`price-chip${priceMax === p ? " active" : ""}`}
+                  onClick={() => setPriceMax(p)}>
+                  {p === null ? "Любая" : `${p} р.`}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {!search && <div className="shint">Умный поиск: находит с опечатками, по категориям и ингредиентам</div>}
