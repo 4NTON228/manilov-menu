@@ -1,1137 +1,638 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Манилов - Меню</title>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Манилов — Меню</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    <div id="root"></div>
+<div id="root"></div>
+<script type="text/babel">
 
-    <!-- Подключаем React и ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-    <!-- Подключаем Babel для преобразования JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Ваш код с type="text/babel" -->
-    <script type="text/babel">
-        // ВЕСЬ ВАШ КОД СЮДА (тот что вы прислали)
-        
-        const menuData = [
-          { id: "morning", title: "Утренние традиции", items: [
-            { name: "Яичница из двух яиц", price: 290, desc: "Подаётся на сковородке, с гренками, на выбор можно добавить бекон, томаты, шампиньоны." },
-            { name: "Яйцо Дворянское", price: 90, desc: "Одно отварное яйцо, подаётся с тремя гренками в специальной кремовке с ложечкой." },
-            { name: "Каша овсяная с черносливом", price: 290, desc: "Подаётся в глубокой тарелке, с 4 добавками: 50 гр банана, миндальные лепестки, орешки, ягоды. Можно приготовить на молоке или на воде." },
-            { name: "Рисовая каша со сливочным маслом", price: 290, desc: "С миндальными лепестками и малиной." },
-            { name: "Блины с пылу с жару", price: 240, desc: "В порции три блина: с ветчиной с сыром; с домашней сметаной; с домашним вареньем; со сгущёнкой." },
-            { name: "Сырники творожные с домашней сгущёнкой и ягодами", price: 330, desc: "Три нежных сырника домашнего приготовления, щедро сдобрены тёплым соусом из варёной сгущёнки и украшены свежими ягодами с веточкой мяты." },
-            { name: "Каша гурьевская с грецким орехом и черносливом", price: 420, desc: "Томлёная каша в глиняном горшочке, запечённая сверху, нежная внутри, с пудрой и мятой." },
-            { name: "Вареники с вишней", price: 280, desc: "Со сливой, припорошённые пудрой, с вишней и ложкой сметаны." },
-          ]},
-          { id: "cold", title: "Холодные кушанья", items: [
-            { name: "Грибочки домашние", price: 560, desc: "Со сметаной и красным луком." },
-            { name: "Паштет из печени индейки с гренками от хозяйки", price: 490, desc: "Подаётся на гренках с карамелизированным луком и грушей." },
-            { name: "Сёлёдка слабосолёная, домашнего посола", price: 390, desc: "С розовой сметаной, луком и хрустящими гренками." },
-            { name: "Солёные разнообразные с квашеной капустой и грибочками", price: 440, desc: "Квашеная капуста, маринованные грибы, солёные огурцы — всё, что хрустит и будит аппетит." },
-            { name: "Русский закусон", price: 670, desc: "Говядина, буженина, копчёная курица, подаётся с хреном и горчицей." },
-            { name: "Винная закуска", price: 630, desc: "Три вида сыра, с медом, грушей и оливами." },
-            { name: "Овощная корзина с зеленью и ароматным маслом", price: 420, desc: "Свежий огурец, помидор, сладкий болгарский перец, пучок зелени — всё полито оливковым маслом." },
-            { name: "Сало домашнее с гренками и горчицей", price: 470, desc: "" },
-            { name: "Квашеная капуста с клюквой от тёти", price: 320, desc: "Квашеная капуста, солёный огурец и клюква. Полито оливковым маслом. Подано в деревянной миске — с душой." },
-            { name: "Фруктовая корзина", price: 470, desc: "" },
-          ]},
-          { id: "hot_snacks", title: "Закуски горячие", items: [
-            { name: "Закуска купеческая с грибами", price: 520, desc: "Нежная курица, дикие белые грибы и густые сливки — всё вместе, в кокотнице, под золотистой корочкой." },
-            { name: "Закуска Барская", price: 480, desc: "Нежная курица, дикие белые грибы и густые сливки — все вместе, в кокотнице, под золотистой корочкой." },
-            { name: "Дранники картофельные со сметаной", price: 390, desc: "" },
-            { name: "Гренки с домашним чесночным соусом", price: 320, desc: "" },
-          ]},
-          { id: "salads", title: "Салаты разные, русские, заморские", items: [
-            { name: "Салат «Манилов»", price: 560, desc: "С пикантной свиной вырезкой, помидорами, сельдереем, солёным и свежим огурцом и зелёным луком." },
-            { name: "Оливье с говядиной", price: 480, desc: "" },
-            { name: "Сельдь под шубой", price: 420, desc: "" },
-            { name: "Салат Опричник в кисло-сладком соусе", price: 520, desc: "Свиная вырезка обжаренная с болгарским перцем, баклажанами и томатами черри." },
-            { name: "Оливье по-царски", price: 520, desc: "" },
-            { name: "Барин-боярин", price: 490, desc: "Печёнь куриная выкладывается на обжаренные овощи (картофель, морковь, лук, корнишон, гриб), заправляется майонезом." },
-            { name: "Баклажаны хрустящие", price: 480, desc: "" },
-            { name: "Овощной с брынзой", price: 480, desc: "" },
-          ]},
-          { id: "soups", title: "Супы", items: [
-            { name: "Солянка старорусская", price: 550, desc: "" },
-            { name: "Борщ с пампушками", price: 480, desc: "С домашней сметаной и сальцом." },
-            { name: "Щи суточные", price: 420, desc: "С домашней сметаной." },
-            { name: "Крем-суп с гренками", price: 1000, desc: "Сезонный (из белых грибов, тыквенный, овощной, кабачковый с имбирём)." },
-            { name: "Похлёбка из белых грибов", price: 480, desc: "Сытная, с говядиной, с картофелем, луком, морковью и корнишонами в сметане." },
-            { name: "Уха рыбацкая с расстегаем", price: 550, desc: "" },
-          ]},
-          { id: "main", title: "Котлета Пожарская", items: [
-            { name: "С квашеной капустой", price: 590, desc: "Сочная, нежная, с лёгким ароматом сливочного масла — готовится, как в XIX веке. Подаётся с квашеной капустой и клюквенным соусом." },
-            { name: "С грибами и сыром", price: 580, desc: "Курица, хруст, внутри — грибы и сыр. Подаётся с квашеной капустой и клюквенным соусом." },
-            { name: "Пельмени мясные", price: 480, desc: "С домашней сметаной и зеленью." },
-            { name: "Пельмени мясные жареные", price: 480, desc: "С домашней сметаной и зелёным маслом." },
-            { name: "Бефстроганов с грибами и картофельным пюре", price: 890, desc: "Нежная говядина, лесные грибы, сливочный соус. С пышным картофельным пюре." },
-            { name: "Говяжьи щёки с картофелем", price: 920, desc: "Томятся 12 часов, с пышным пюре и пикантным соусом." },
-            { name: "Дранник по-русски со свининой", price: 620, desc: "Свинина вырезка, шампиньоны, лук — всё тушится в сметане. Запечатано в хрустящий картофельный дранник." },
-            { name: "Горбуша на овощах в сливочном соусе", price: 980, desc: "Нежная красная рыба на подушке из цукини, баклажанов и перца. Запечёна в густых сливках." },
-            { name: "Судак с Польским соусом", price: 840, desc: "Нежное филе судака подано с хрустящим айсбергом и сладкими черри и соусом." },
-            { name: "Кокорки тверские", price: 460, desc: "«Пирожки» из картофельного теста, подаются с чесночной сметаной." },
-            { name: "Рагу из куриных потрошков", price: 460, desc: "Куриные потрошки, тушёные в соусе лук — до мягкости и аромата." },
-            { name: "Кролик томлёный в травах с имбирём", price: 890, desc: "" },
-            { name: "Голубцы с домашней сметаной", price: 620, desc: "" },
-          ]},
-          { id: "pan", title: "На сковородках", items: [
-            { name: "Жарёха с судаком, овощами и картофелем под сыром", price: 520, desc: "Филе судака на подушке из картофеля и помидоров. Залито сливками, посыпано сыром — запечено до золотистой корочки." },
-            { name: "Скоблянка", price: 540, desc: "Жареный картофель, лук, грибы, буженина, сало, карбонат. В центре — яйцо, сверху — сырная шапка. Запечено до хруста." },
-            { name: "Русская сковородка", price: 980, desc: "На дне — воздушное пюре. Поверх — говядина с луком, морковью, грибами. Сыр. И шапка из слоёного теста — запечёна до хруста." },
-            { name: "Чир на гриле", price: 480, desc: "Нежная рыба в воздушном омлете. Поливается сливочным маслом прямо перед подачей." },
-          ]},
-          { id: "pots", title: "В горшочках", items: [
-            { name: "Жаркое из свинины", price: 520, desc: "Свинина. Картофель. Грибы. Перец. Всё — в глиняном горшочке, с луком, специями и домашней сметаной." },
-            { name: "Говядина кусковая в травах", price: 810, desc: "Нежные куски говядины, тушёные с луком, спелыми помидорами и травами с добавлением ароматного масла." },
-            { name: "Судак с картофелем в сливках", price: 840, desc: "Нежное филе судака, картофель, лук, болгарский перец. Залито ароматными сливками. Мягко. Сочно. По-домашнему." },
-          ]},
-          { id: "garnish", title: "Гарниры", items: [
-            { name: "Гречка", price: 310, desc: "" },
-            { name: "Грибы с луком", price: 280, desc: "" },
-            { name: "Картофельное пюре", price: 190, desc: "" },
-            { name: "Тушёная капуста по-деревенски", price: 160, desc: "" },
-            { name: "Рис с овощами", price: 160, desc: "" },
-          ]},
-          { id: "banquet", title: "Банкетные блюда", items: [
-            { name: "Щука фаршированная", price: 3800, desc: "По предварительному заказу." },
-            { name: "Утка запечённая в собственном соку", price: 4200, desc: "По предварительному заказу." },
-            { name: "Курник", price: 3200, desc: "По предварительному заказу." },
-            { name: "Пирог мясной с овощами", price: 2600, desc: "По предварительному заказу." },
-            { name: "Пирог с вишней", price: 2400, desc: "По предварительному заказу." },
-            { name: "Торт Крокенбуш", price: 2200, desc: "По предварительному заказу." },
-          ]},
-          { id: "drinks_soft", title: "Безалкогольные напитки", items: [
-            { name: "Морс (клюква/облепиха/чёрная смородина)", price: 160, desc: "" },
-            { name: "Квас монастырский Афанасий", price: 260, desc: "" },
-            { name: "Глинтвейн в ассортименте", price: 340, desc: "" },
-            { name: "Взвар медовый", price: 240, desc: "" },
-            { name: "Сбитень на меду", price: 260, desc: "" },
-          ]},
-          { id: "teas", title: "Нечайные чаи и чай", items: [
-            { name: "Малиновый с мятой и лаймом", price: 410, desc: "С садовыми фруктами и ягодами." },
-            { name: "Облепиховый с имбирём и апельсином", price: 410, desc: "" },
-            { name: "Яблочный с клюквой", price: 390, desc: "" },
-            { name: "Хвойный с чёрной смородиной", price: 410, desc: "" },
-            { name: "Иван чай", price: 320, desc: "" },
-            { name: "Сибирский", price: 320, desc: "Листья малины, земляники, мяты, ежевики, цветов вереска, лепестки календулы, кожура шиповника и розы." },
-            { name: "Таёжный", price: 320, desc: "Ягоды и листья брусники, черники, голубики, лепестки василька и календулы." },
-            { name: "Ассам", price: 320, desc: "" },
-            { name: "Эрл Грей", price: 340, desc: "Чёрный чай с бергамотом." },
-            { name: "Кавказский", price: 340, desc: "Листья и соцветия чабреца." },
-            { name: "Сенча", price: 320, desc: "" },
-            { name: "Зелёный с мятой и мелиссой", price: 360, desc: "" },
-            { name: "Молочный улун", price: 360, desc: "" },
-          ]},
-          { id: "coffee", title: "Кофе", items: [
-            { name: "Эспрессо", price: 150, desc: "" },
-            { name: "Двойной эспрессо", price: 180, desc: "" },
-            { name: "Капучино", price: 290, desc: "" },
-            { name: "Латте", price: 310, desc: "" },
-            { name: "Гляссе", price: 300, desc: "" },
-            { name: "Американо", price: 210, desc: "" },
-            { name: "Горячий шоколад", price: 360, desc: "" },
-          ]},
-          { id: "juice", title: "Свежевыжатый сок", items: [
-            { name: "Апельсин", price: 320, desc: "" },
-            { name: "Грейпфрут", price: 320, desc: "" },
-            { name: "Морковный со сливками", price: 310, desc: "" },
-            { name: "Яблочный", price: 310, desc: "" },
-          ]},
-          { id: "lemonade", title: "Лимонады домашние", items: [
-            { name: "Цитрусовый", price: 280, desc: "0,4л / 1л — 280 / 610 р." },
-            { name: "Клубничный", price: 290, desc: "0,4л / 1л — 290 / 640 р." },
-            { name: "Мятно-имбирный", price: 290, desc: "0,4л / 1л — 290 / 640 р." },
-            { name: "Облепиховый", price: 280, desc: "0,4л / 1л — 280 / 610 р." },
-          ]},
-          { id: "milkshakes", title: "Молочные коктейли", items: [
-            { name: "Ванильный", price: 320, desc: "" },
-            { name: "Клубничный", price: 320, desc: "" },
-            { name: "Шоколадный", price: 320, desc: "" },
-          ]},
-          { id: "desserts", title: "Десерты", items: [
-            { name: "Шарлотка с вишней", price: 290, desc: "" },
-            { name: "Коврижка медовая старорусская с орехами и медом", price: 310, desc: "" },
-            { name: "Морковный", price: 310, desc: "" },
-            { name: "Прага", price: 310, desc: "" },
-            { name: "Наполеон", price: 320, desc: "" },
-            { name: "Медовик", price: 340, desc: "" },
-            { name: "Эклер с земляникой", price: 290, desc: "" },
-            { name: "Мороженое в ассортименте (1 шарик)", price: 120, desc: "" },
-          ]},
-          { id: "bread", title: "Хлеб собственного приготовления", items: [
-            { name: "Ржаной с тыквенными семечками и геркулесом", price: 65, desc: "" },
-            { name: "Пшеничный с белым кунжутом", price: 65, desc: "" },
-            { name: "Мясной пирог", price: 360, desc: "С начинкой из белой рыбы, риса, яиц и зелёного лука." },
-          ]},
-        ];
+const { useState, useRef, useEffect } = React;
 
-        const quotes = [
-          { text: "Я люблю поесть. Ведь на то живёшь, чтобы срывать цветы удовольствия.", author: "Николай Гоголь" },
-          { text: "Прошу покорно закусить.", author: "Николай Гоголь" },
-          { text: "Жизнь идёт по-прежнему сумбурная, быстрая, кошмарная.", author: "Михаил Булгаков" },
-          { text: "Мало едите, вот и всё. Попробуйте-ка хорошенько пообедать.", author: "Николай Гоголь" },
-        ];
+// Ключевое слово для поиска фото на Unsplash (английский)
+const menuData = [
+  { id: "morning", title: "Утренние традиции", items: [
+    { name: "Яичница из двух яиц", price: 290, desc: "Подаётся на сковородке, с гренками, на выбор можно добавить бекон, томаты, шампиньоны." },
+    { name: "Яйцо Дворянское", price: 90, desc: "Одно отварное яйцо, подаётся с тремя гренками в специальной кремовке с ложечкой." },
+    { name: "Каша овсяная с черносливом", price: 290, desc: "С 4 добавками: банан, миндаль, орешки, ягоды. На молоке или воде." },
+    { name: "Рисовая каша со сливочным маслом", price: 290, desc: "С миндальными лепестками и малиной." },
+    { name: "Блины с пылу с жару", price: 240, desc: "Три блина: с ветчиной; со сметаной; с вареньем; со сгущёнкой." },
+    { name: "Сырники творожные с домашней сгущёнкой и ягодами", price: 330, desc: "Три нежных сырника со сгущёнкой и свежими ягодами." },
+    { name: "Каша гурьевская с грецким орехом и черносливом", price: 420, desc: "Томлёная каша в глиняном горшочке, с пудрой и мятой." },
+    { name: "Вареники с вишней", price: 280, desc: "Со сливой, припорошённые пудрой, с вишней и ложкой сметаны." },
+  ]},
+  { id: "cold", title: "Холодные кушанья", items: [
+    { name: "Грибочки домашние", price: 560, desc: "Со сметаной и красным луком." },
+    { name: "Паштет из печени индейки с гренками", price: 490, desc: "На гренках с карамелизированным луком и грушей." },
+    { name: "Сёлёдка слабосолёная домашнего посола", price: 390, desc: "С розовой сметаной, луком и хрустящими гренками." },
+    { name: "Солёные с квашеной капустой и грибочками", price: 440, desc: "Квашеная капуста, маринованные грибы, солёные огурцы." },
+    { name: "Русский закусон", price: 670, desc: "Говядина, буженина, копчёная курица, с хреном и горчицей." },
+    { name: "Винная закуска", price: 630, desc: "Три вида сыра, с медом, грушей и оливами." },
+    { name: "Овощная корзина с зеленью и ароматным маслом", price: 420, desc: "Огурец, помидор, болгарский перец, зелень с оливковым маслом." },
+    { name: "Сало домашнее с гренками и горчицей", price: 470, desc: "" },
+    { name: "Квашеная капуста с клюквой от тёти", price: 320, desc: "С клюквой, подано в деревянной миске — с душой." },
+    { name: "Фруктовая корзина", price: 470, desc: "" },
+  ]},
+  { id: "hot_snacks", title: "Закуски горячие", items: [
+    { name: "Закуска купеческая с грибами", price: 520, desc: "Нежная курица, белые грибы и густые сливки в кокотнице." },
+    { name: "Закуска Барская", price: 480, desc: "Курица, белые грибы и сливки в кокотнице под золотистой корочкой." },
+    { name: "Дранники картофельные со сметаной", price: 390, desc: "" },
+    { name: "Гренки с домашним чесночным соусом", price: 320, desc: "" },
+  ]},
+  { id: "salads", title: "Салаты разные, русские, заморские", items: [
+    { name: "Салат «Манилов»", price: 560, desc: "С пикантной свиной вырезкой, помидорами, сельдереем, огурцом и зелёным луком." },
+    { name: "Оливье с говядиной", price: 480, desc: "" },
+    { name: "Сельдь под шубой", price: 420, desc: "" },
+    { name: "Салат Опричник в кисло-сладком соусе", price: 520, desc: "Свиная вырезка с болгарским перцем, баклажанами и томатами черри." },
+    { name: "Оливье по-царски", price: 520, desc: "" },
+    { name: "Барин-боярин", price: 490, desc: "Печёнь куриная с обжаренными овощами, заправляется майонезом." },
+    { name: "Баклажаны хрустящие", price: 480, desc: "" },
+    { name: "Овощной с брынзой", price: 480, desc: "" },
+  ]},
+  { id: "soups", title: "Супы", items: [
+    { name: "Солянка старорусская", price: 550, desc: "" },
+    { name: "Борщ с пампушками", price: 480, desc: "С домашней сметаной и сальцом." },
+    { name: "Щи суточные", price: 420, desc: "С домашней сметаной." },
+    { name: "Крем-суп с гренками", price: 1000, desc: "Сезонный: из белых грибов, тыквенный, овощной, кабачковый с имбирём." },
+    { name: "Похлёбка из белых грибов", price: 480, desc: "Сытная, с говядиной, картофелем, луком, морковью." },
+    { name: "Уха рыбацкая с расстегаем", price: 550, desc: "" },
+  ]},
+  { id: "main", title: "Котлета Пожарская", items: [
+    { name: "С квашеной капустой", price: 590, desc: "Сочная, нежная, с ароматом сливочного масла. С квашеной капустой и клюквенным соусом." },
+    { name: "С грибами и сыром", price: 580, desc: "Курица, хруст, внутри — грибы и сыр." },
+    { name: "Пельмени мясные", price: 480, desc: "С домашней сметаной и зеленью." },
+    { name: "Пельмени мясные жареные", price: 480, desc: "С домашней сметаной и зелёным маслом." },
+    { name: "Бефстроганов с грибами и картофельным пюре", price: 890, desc: "Нежная говядина, лесные грибы, сливочный соус. С пышным пюре." },
+    { name: "Говяжьи щёки с картофелем", price: 920, desc: "Томятся 12 часов, с пышным пюре и пикантным соусом." },
+    { name: "Дранник по-русски со свининой", price: 620, desc: "Свинина, шампиньоны, лук в сметане. Запечатано в картофельный дранник." },
+    { name: "Горбуша на овощах в сливочном соусе", price: 980, desc: "На подушке из цукини, баклажанов и перца. В густых сливках." },
+    { name: "Судак с Польским соусом", price: 840, desc: "Нежное филе с хрустящим айсбергом и сладкими черри." },
+    { name: "Кокорки тверские", price: 460, desc: "Пирожки из картофельного теста с чесночной сметаной." },
+    { name: "Рагу из куриных потрошков", price: 460, desc: "Куриные потрошки, тушёные до мягкости и аромата." },
+    { name: "Кролик томлёный в травах с имбирём", price: 890, desc: "" },
+    { name: "Голубцы с домашней сметаной", price: 620, desc: "" },
+  ]},
+  { id: "pan", title: "На сковородках", items: [
+    { name: "Жарёха с судаком, овощами и картофелем под сыром", price: 520, desc: "Филе судака на подушке из картофеля и помидоров. Залито сливками, запечено под сыром." },
+    { name: "Скоблянка", price: 540, desc: "Картофель, лук, грибы, буженина, яйцо и сырная шапка. Запечено до хруста." },
+    { name: "Русская сковородка", price: 980, desc: "Воздушное пюре, говядина с грибами, шапка из слоёного теста." },
+    { name: "Чир на гриле", price: 480, desc: "Нежная рыба в воздушном омлете со сливочным маслом." },
+  ]},
+  { id: "pots", title: "В горшочках", items: [
+    { name: "Жаркое из свинины", price: 520, desc: "Свинина, картофель, грибы, лук в глиняном горшочке со сметаной." },
+    { name: "Говядина кусковая в травах", price: 810, desc: "Нежные куски говядины с помидорами и травами." },
+    { name: "Судак с картофелем в сливках", price: 840, desc: "Нежное филе судака с картофелем в ароматных сливках." },
+  ]},
+  { id: "garnish", title: "Гарниры", items: [
+    { name: "Гречка", price: 310, desc: "" },
+    { name: "Грибы с луком", price: 280, desc: "" },
+    { name: "Картофельное пюре", price: 190, desc: "" },
+    { name: "Тушёная капуста по-деревенски", price: 160, desc: "" },
+    { name: "Рис с овощами", price: 160, desc: "" },
+  ]},
+  { id: "banquet", title: "Банкетные блюда", items: [
+    { name: "Щука фаршированная", price: 3800, desc: "По предварительному заказу." },
+    { name: "Утка запечённая в собственном соку", price: 4200, desc: "По предварительному заказу." },
+    { name: "Курник", price: 3200, desc: "По предварительному заказу." },
+    { name: "Пирог мясной с овощами", price: 2600, desc: "По предварительному заказу." },
+    { name: "Пирог с вишней", price: 2400, desc: "По предварительному заказу." },
+    { name: "Торт Крокенбуш", price: 2200, desc: "По предварительному заказу." },
+  ]},
+  { id: "drinks_soft", title: "Безалкогольные напитки", items: [
+    { name: "Морс (клюква/облепиха/чёрная смородина)", price: 160, desc: "" },
+    { name: "Квас монастырский Афанасий", price: 260, desc: "" },
+    { name: "Глинтвейн в ассортименте", price: 340, desc: "" },
+    { name: "Взвар медовый", price: 240, desc: "" },
+    { name: "Сбитень на меду", price: 260, desc: "" },
+  ]},
+  { id: "teas", title: "Нечайные чаи и чай", items: [
+    { name: "Малиновый с мятой и лаймом", price: 410, desc: "С садовыми фруктами и ягодами." },
+    { name: "Облепиховый с имбирём и апельсином", price: 410, desc: "" },
+    { name: "Яблочный с клюквой", price: 390, desc: "" },
+    { name: "Хвойный с чёрной смородиной", price: 410, desc: "" },
+    { name: "Иван чай", price: 320, desc: "" },
+    { name: "Сибирский", price: 320, desc: "Малина, земляника, мята, ежевика, вереск, календула, шиповник." },
+    { name: "Таёжный", price: 320, desc: "Брусника, черника, голубика, василёк, календула." },
+    { name: "Ассам", price: 320, desc: "" },
+    { name: "Эрл Грей", price: 340, desc: "Чёрный чай с бергамотом." },
+    { name: "Кавказский", price: 340, desc: "Листья и соцветия чабреца." },
+    { name: "Сенча", price: 320, desc: "" },
+    { name: "Зелёный с мятой и мелиссой", price: 360, desc: "" },
+    { name: "Молочный улун", price: 360, desc: "" },
+  ]},
+  { id: "coffee", title: "Кофе", items: [
+    { name: "Эспрессо", price: 150, desc: "" },
+    { name: "Двойной эспрессо", price: 180, desc: "" },
+    { name: "Капучино", price: 290, desc: "" },
+    { name: "Латте", price: 310, desc: "" },
+    { name: "Гляссе", price: 300, desc: "" },
+    { name: "Американо", price: 210, desc: "" },
+    { name: "Горячий шоколад", price: 360, desc: "" },
+  ]},
+  { id: "juice", title: "Свежевыжатый сок", items: [
+    { name: "Апельсин", price: 320, desc: "" },
+    { name: "Грейпфрут", price: 320, desc: "" },
+    { name: "Морковный со сливками", price: 310, desc: "" },
+    { name: "Яблочный", price: 310, desc: "" },
+  ]},
+  { id: "lemonade", title: "Лимонады домашние", items: [
+    { name: "Цитрусовый", price: 280, desc: "0,4л / 1л — 280 / 610 р." },
+    { name: "Клубничный", price: 290, desc: "0,4л / 1л — 290 / 640 р." },
+    { name: "Мятно-имбирный", price: 290, desc: "0,4л / 1л — 290 / 640 р." },
+    { name: "Облепиховый", price: 280, desc: "0,4л / 1л — 280 / 610 р." },
+  ]},
+  { id: "milkshakes", title: "Молочные коктейли", items: [
+    { name: "Ванильный", price: 320, desc: "" },
+    { name: "Клубничный", price: 320, desc: "" },
+    { name: "Шоколадный", price: 320, desc: "" },
+  ]},
+  { id: "desserts", title: "Десерты", items: [
+    { name: "Шарлотка с вишней", price: 290, desc: "" },
+    { name: "Коврижка медовая с орехами и медом", price: 310, desc: "" },
+    { name: "Морковный торт", price: 310, desc: "" },
+    { name: "Прага", price: 310, desc: "" },
+    { name: "Наполеон", price: 320, desc: "" },
+    { name: "Медовик", price: 340, desc: "" },
+    { name: "Эклер с земляникой", price: 290, desc: "" },
+    { name: "Мороженое в ассортименте (1 шарик)", price: 120, desc: "" },
+  ]},
+  { id: "bread", title: "Хлеб собственного приготовления", items: [
+    { name: "Ржаной с тыквенными семечками и геркулесом", price: 65, desc: "" },
+    { name: "Пшеничный с белым кунжутом", price: 65, desc: "" },
+    { name: "Мясной пирог", price: 360, desc: "С начинкой из белой рыбы, риса, яиц и зелёного лука." },
+  ]},
+];
 
-        const CSS = `
-          @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-          *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+const quotes = [
+  { text: "Я люблю поесть. Ведь на то живёшь, чтобы срывать цветы удовольствия.", author: "Николай Гоголь" },
+  { text: "Прошу покорно закусить.", author: "Николай Гоголь" },
+  { text: "Жизнь идёт по-прежнему сумбурная, быстрая, кошмарная.", author: "Михаил Булгаков" },
+  { text: "Мало едите, вот и всё. Попробуйте-ка хорошенько пообедать.", author: "Николай Гоголь" },
+];
 
-          :root {
-            --bg:      #f2e8d0;
-            --bg2:     #e8dbbe;
-            --bg3:     #daccaa;
-            --surface: #faf5e8;
-            --ink:     #1a0f04;
-            --ink2:    #2e1c08;
-            --ink3:    #5c3d18;
-            --gold:    #6b4510;
-            --gold2:   #8c5c18;
-            --line:    rgba(107,69,16,0.3);
-            --line2:   rgba(107,69,16,0.14);
-            --shadow:  rgba(26,15,4,0.12);
-          }
+// Компонент карточки блюда с placeholder
+function DishCard({ item, isOpen, onToggle }) {
+  // item.photo может быть URL своего фото — тогда показываем его
+  // иначе красивый placeholder с буквой
+  const letter = item.name.charAt(0).toUpperCase();
 
-          /* ═══ KEYFRAMES ═══ */
-          @keyframes headerIn {
-            from { opacity: 0; transform: translateY(-22px); }
-            to   { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-          }
-          @keyframes shimmer {
-            0%   { background-position: -250% center; }
-            100% { background-position: 250% center; }
-          }
-          @keyframes ruleGrow {
-            from { transform: scaleX(0); }
-            to   { transform: scaleX(1); }
-          }
-          @keyframes descIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to   { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes secIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes quoteIn {
-            from { opacity: 0; transform: translateX(-14px); }
-            to   { opacity: 1; transform: translateX(0); }
-          }
-          @keyframes pricePop {
-            0%   { transform: scale(1); color: var(--gold); }
-            40%  { transform: scale(1.18); color: var(--gold2); }
-            100% { transform: scale(1); color: var(--gold); }
-          }
-          @keyframes itemReveal {
-            from { opacity: 0; transform: translateX(-8px); }
-            to   { opacity: 1; transform: translateX(0); }
-          }
-          @keyframes borderPulse {
-            0%, 100% { border-color: var(--line2); }
-            50%       { border-color: rgba(107,69,16,0.4); }
-          }
-
-          .wrap {
-            min-height: 100vh;
-            background: var(--bg);
-            font-family: 'PT Serif', Georgia, 'Times New Roman', serif;
-            color: var(--ink);
-            padding-bottom: 80px;
-          }
-
-          /* ── ШАПКА ── */
-          .header {
-            background: var(--bg2);
-            border-bottom: 2px solid var(--line);
-            text-align: center;
-            padding: 36px 20px 28px;
-            animation: headerIn 0.65s cubic-bezier(.22,.68,0,1.2) both;
-          }
-          .htag {
-            font-size: 0.68rem;
-            letter-spacing: 0.5em;
-            color: var(--gold2);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            animation: fadeIn 0.8s ease 0.4s both;
-          }
-          .logo {
-            font-size: clamp(2.6rem, 9vw, 4.4rem);
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            line-height: 1.1;
-            background: linear-gradient(
-              105deg,
-              var(--ink) 0%,
-              var(--ink) 38%,
-              #c8942a 50%,
-              var(--ink) 62%,
-              var(--ink) 100%
-            );
-            background-size: 250% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 1.6s ease 0.1s 1 both;
-          }
-          .logo-rule {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px auto;
-            max-width: 260px;
-            overflow: hidden;
-          }
-          .logo-rule::before, .logo-rule::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--gold2);
-            opacity: 0.5;
-            transform-origin: center;
-            animation: ruleGrow 0.7s ease 0.5s both;
-          }
-          .logo-dot {
-            width: 4px; height: 4px;
-            border-radius: 50%;
-            background: var(--gold2);
-            opacity: 0.7;
-            animation: fadeIn 0.5s ease 0.9s both;
-          }
-          .logo-sub {
-            font-size: 0.72rem;
-            letter-spacing: 0.45em;
-            color: var(--ink3);
-            text-transform: uppercase;
-            animation: fadeIn 0.8s ease 0.6s both;
-          }
-
-          /* ── ЦИТАТА ── */
-          .quote {
-            background: var(--bg2);
-            border-bottom: 1px solid var(--line2);
-            padding: 14px 22px;
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-            animation: quoteIn 0.6s ease 0.5s both;
-          }
-          .qmark {
-            font-size: 3.8rem;
-            line-height: 0.6;
-            color: var(--gold2);
-            opacity: 0.3;
-            flex-shrink: 0;
-            margin-top: 3px;
-            font-weight: 700;
-            user-select: none;
-          }
-          .qtext {
-            font-style: italic;
-            font-size: 0.98rem;
-            color: var(--ink2);
-            line-height: 1.65;
-          }
-          .qauthor {
-            margin-top: 5px;
-            font-size: 0.7rem;
-            letter-spacing: 0.28em;
-            color: var(--gold);
-            text-transform: uppercase;
-          }
-
-          /* ── ПОИСК ── */
-          .search-wrap {
-            padding: 18px 16px 10px;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: fadeUp 0.5s ease 0.6s both;
-          }
-          .sfield { position: relative; }
-          .sicon {
-            position: absolute;
-            left: 13px; top: 50%;
-            transform: translateY(-50%);
-            color: var(--gold2);
-            pointer-events: none;
-            width: 15px; height: 15px;
-            transition: color 0.2s;
-          }
-          .sfield:focus-within .sicon { color: var(--gold); }
-          .sinput {
-            width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            border-radius: 2px;
-            padding: 12px 38px 12px 42px;
-            font-family: 'PT Serif', Georgia, serif;
-            font-size: 1rem;
-            color: var(--ink);
-            outline: none;
-            transition: border-color 0.25s, box-shadow 0.25s, background 0.2s;
-            box-shadow: 0 1px 4px var(--shadow);
-          }
-          .sinput::placeholder { color: var(--ink3); opacity: 0.55; font-style: italic; }
-          .sinput:focus {
-            border-color: var(--gold2);
-            box-shadow: 0 0 0 3px rgba(107,69,16,0.1), 0 1px 4px var(--shadow);
-            background: #fff;
-          }
-          .shint {
-            margin-top: 5px;
-            font-size: 0.72rem;
-            font-style: italic;
-            color: var(--ink3);
-            opacity: 0.65;
-            padding-left: 2px;
-          }
-          .sclear {
-            position: absolute;
-            right: 10px; top: 50%;
-            transform: translateY(-50%);
-            background: none; border: none;
-            cursor: pointer;
-            color: var(--ink3);
-            font-size: 0.9rem;
-            padding: 5px 6px;
-            line-height: 1;
-            transition: color 0.18s, transform 0.15s;
-          }
-          .sclear:hover { color: var(--gold2); transform: translateY(-50%) scale(1.2); }
-
-          /* ── ТАБЫ ── */
-          .tabs {
-            display: flex;
-            gap: 4px;
-            padding: 6px 16px 14px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            animation: fadeUp 0.5s ease 0.7s both;
-          }
-          .tabs::-webkit-scrollbar { display: none; }
-          .tab {
-            flex-shrink: 0;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            border-radius: 2px;
-            padding: 5px 13px;
-            font-family: 'PT Serif', Georgia, serif;
-            font-size: 0.84rem;
-            color: var(--ink2);
-            cursor: pointer;
-            transition: border-color 0.18s, color 0.18s, background 0.18s,
-                        box-shadow 0.18s, transform 0.15s;
-            box-shadow: 0 1px 3px var(--shadow);
-            white-space: nowrap;
-          }
-          .tab:hover {
-            border-color: var(--gold2);
-            color: var(--gold);
-            transform: translateY(-1px);
-            box-shadow: 0 3px 8px var(--shadow);
-          }
-          .tab:active { transform: translateY(0); }
-          .tab.on {
-            background: var(--gold);
-            border-color: var(--gold);
-            color: #fff;
-            box-shadow: 0 2px 7px rgba(107,69,16,0.35);
-            transform: translateY(-1px);
-          }
-
-          /* ── КОНТЕНТ ── */
-          .content { max-width: 680px; margin: 0 auto; padding: 0 14px; }
-
-          /* ── РЕЗУЛЬТАТЫ ПОИСКА ── */
-          .rlabel {
-            padding: 10px 2px 12px;
-            font-size: 0.7rem;
-            letter-spacing: 0.35em;
-            color: var(--ink3);
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--line2);
-            margin-bottom: 6px;
-            animation: fadeIn 0.3s ease both;
-          }
-          .rcat-head {
-            padding: 11px 16px 10px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--ink);
-            background: var(--bg2);
-            border-bottom: 1px solid var(--line2);
-          }
-          .empty {
-            text-align: center;
-            padding: 70px 20px;
-            font-style: italic;
-            color: var(--ink3);
-            font-size: 1.1rem;
-            animation: fadeIn 0.4s ease both;
-          }
-          .empty-sub {
-            margin-top: 8px;
-            font-size: 0.78rem;
-            letter-spacing: 0.15em;
-            opacity: 0.6;
-            font-style: normal;
-          }
-
-          /* ── РАЗДЕЛ ── */
-          .sec {
-            background: var(--surface);
-            border: 1px solid var(--line2);
-            border-radius: 2px;
-            margin-bottom: 6px;
-            overflow: hidden;
-            box-shadow: 0 1px 5px var(--shadow);
-            animation: secIn 0.45s ease both;
-            transition: box-shadow 0.2s;
-          }
-          .sec:hover {
-            box-shadow: 0 3px 12px rgba(26,15,4,0.16);
-          }
-          .sec-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding: 13px 16px;
-            background: var(--bg2);
-            border-bottom: 1px solid var(--line2);
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.18s;
-            position: relative;
-            overflow: hidden;
-          }
-          .sec-head::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 3px;
-            background: var(--gold2);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.22s ease;
-          }
-          .sec-head:hover { background: var(--bg3); }
-          .sec-head:hover::before { transform: scaleY(1); }
-          .sec-title {
-            font-size: clamp(0.92rem, 2.5vw, 1.05rem);
-            font-weight: 700;
-            color: var(--ink);
-            flex: 1;
-            line-height: 1.3;
-            letter-spacing: 0.01em;
-            transition: color 0.18s;
-          }
-          .sec-head:hover .sec-title { color: var(--gold); }
-          .sec-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-          }
-          .sec-count {
-            font-size: 0.7rem;
-            color: var(--ink3);
-            letter-spacing: 0.08em;
-          }
-          .chevron {
-            width: 13px; height: 13px;
-            color: var(--gold2);
-            transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), color 0.18s;
-            flex-shrink: 0;
-          }
-          .chevron.open {
-            transform: rotate(180deg);
-            color: var(--gold);
-          }
-
-          /* ── СПИСОК ПОЗИЦИЙ ── */
-          .itemlist {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.38s cubic-bezier(.4,0,.2,1),
-                        opacity 0.28s ease;
-            opacity: 0;
-          }
-          .itemlist.open {
-            max-height: 9999px;
-            opacity: 1;
-            transition: max-height 0.5s cubic-bezier(.4,0,.2,1),
-                        opacity 0.32s ease 0.06s;
-          }
-
-          .item {
-            border-bottom: 1px solid var(--line2);
-            padding: 11px 16px;
-            cursor: pointer;
-            transition: background 0.15s, padding-left 0.2s;
-            position: relative;
-          }
-          .item:last-child { border-bottom: none; }
-          .item:hover {
-            background: #faf4e2;
-            padding-left: 20px;
-          }
-          .item.open {
-            background: #f7f0d8;
-            padding-left: 20px;
-          }
-          .item.open::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 2px;
-            background: var(--gold2);
-            animation: fadeIn 0.2s ease both;
-          }
-
-          .irow {
-            display: flex;
-            align-items: baseline;
-            gap: 0;
-          }
-          .iname {
-            font-size: 1rem;
-            color: var(--ink);
-            line-height: 1.45;
-            flex: 1;
-            min-width: 0;
-            transition: color 0.15s;
-          }
-          .item:hover .iname { color: var(--ink2); }
-          .idots {
-            flex: 1;
-            min-width: 12px;
-            background-image: radial-gradient(circle, rgba(107,69,16,0.38) 1px, transparent 1px);
-            background-size: 6px 1px;
-            background-repeat: repeat-x;
-            background-position: left center;
-            height: 1.45em;
-            margin: 0 6px;
-          }
-          .iprice {
-            font-variant-numeric: tabular-nums;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--ink2);
-            white-space: nowrap;
-            flex-shrink: 0;
-            text-align: right;
-            min-width: 72px;
-            transition: color 0.15s, transform 0.15s;
-          }
-          .item:hover .iprice {
-            color: var(--gold);
-          }
-          .item.open .iprice {
-            color: var(--gold);
-            animation: pricePop 0.35s ease both;
-          }
-          .idesc {
-            margin-top: 7px;
-            font-size: 0.88rem;
-            font-style: italic;
-            color: var(--ink3);
-            line-height: 1.62;
-            animation: descIn 0.22s ease both;
-            overflow: hidden;
-          }
-          mark.hl {
-            background: rgba(140,92,24,0.22);
-            border-radius: 2px;
-            padding: 0 1px;
-            font-style: inherit;
-            color: inherit;
-          }
-
-          .rgroup {
-            animation: secIn 0.35s ease both;
-          }
-
-          .footer {
-            text-align: center;
-            margin-top: 52px;
-            padding: 28px 20px 20px;
-            animation: fadeUp 0.5s ease 0.3s both;
-          }
-          .footer-rule {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold2), transparent);
-            max-width: 180px;
-            margin: 0 auto 16px;
-            animation: ruleGrow 0.7s ease 0.5s both;
-            transform-origin: center;
-          }
-          .fnote {
-            font-size: 0.74rem;
-            letter-spacing: 0.3em;
-            color: var(--ink3);
-            text-transform: uppercase;
-          }
-          .fsite {
-            margin-top: 7px;
-            font-size: 0.88rem;
-            letter-spacing: 0.22em;
-            color: var(--gold2);
-            font-weight: 700;
-            transition: color 0.2s;
-          }
-          .fsite:hover { color: var(--gold); }
-
-          ::-webkit-scrollbar { width: 4px; }
-          ::-webkit-scrollbar-track { background: var(--bg2); }
-          ::-webkit-scrollbar-thumb { background: var(--gold2); border-radius: 2px; }
-
-          .hero {
-            position: relative;
-            min-height: 100svh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg2);
-            overflow: hidden;
-            border-bottom: 2px solid var(--line);
-          }
-          .hero-bg {
-            position: absolute;
-            inset: 0;
-            background:
-              radial-gradient(ellipse 70% 55% at 50% 38%, rgba(140,92,24,0.07) 0%, transparent 70%);
-            pointer-events: none;
-          }
-          .hero::before, .hero::after {
-            content: '';
-            position: absolute;
-            width: 52px; height: 52px;
-            border-color: var(--line);
-            border-style: solid;
-            animation: fadeIn 1s ease 0.9s both;
-          }
-          .hero::before { top: 20px; left: 20px; border-width: 1px 0 0 1px; }
-          .hero::after  { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
-
-          .hero-content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 56px 28px 48px;
-            max-width: 520px;
-            width: 100%;
-          }
-          .hero-tag {
-            font-size: 0.62rem;
-            letter-spacing: 0.62em;
-            color: var(--gold2);
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            animation: fadeIn 0.8s ease 0.3s both;
-          }
-          .hero-logo {
-            font-size: clamp(3.6rem, 14vw, 7rem);
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            line-height: 1;
-            background: linear-gradient(
-              105deg,
-              var(--ink) 0%, var(--ink) 32%,
-              #b87c1a 50%,
-              var(--ink) 68%, var(--ink) 100%
-            );
-            background-size: 220% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 2s ease 0.1s 1 both;
-          }
-          .hero-rule {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 18px 0 15px;
-            width: 180px;
-            animation: ruleGrow 0.8s ease 0.65s both;
-            transform-origin: center;
-          }
-          .hero-rule::before, .hero-rule::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--gold2);
-            opacity: 0.45;
-          }
-          .hero-dot {
-            width: 4px; height: 4px;
-            border-radius: 50%;
-            background: var(--gold2);
-            opacity: 0.65;
-            flex-shrink: 0;
-          }
-          .hero-label {
-            font-size: 0.7rem;
-            letter-spacing: 0.52em;
-            color: var(--ink3);
-            text-transform: uppercase;
-            margin-bottom: 38px;
-            animation: fadeIn 0.8s ease 0.85s both;
-          }
-          .hero-quote {
-            font-style: italic;
-            font-size: clamp(0.94rem, 2.5vw, 1.06rem);
-            color: var(--ink2);
-            line-height: 1.75;
-            margin-bottom: 7px;
-            animation: fadeUp 0.8s ease 1s both;
-          }
-          .hero-author {
-            font-size: 0.67rem;
-            letter-spacing: 0.3em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 44px;
-            animation: fadeUp 0.8s ease 1.1s both;
-          }
-          .hero-btn {
-            background: transparent;
-            border: 1px solid var(--line);
-            color: var(--gold2);
-            font-family: 'PT Serif', Georgia, serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.42em;
-            text-transform: uppercase;
-            padding: 13px 38px;
-            cursor: pointer;
-            transition: background 0.22s, color 0.22s, border-color 0.22s,
-                        transform 0.18s, box-shadow 0.22s;
-            border-radius: 1px;
-            animation: fadeUp 0.8s ease 1.3s both;
-            margin-bottom: 36px;
-          }
-          .hero-btn:hover {
-            background: var(--gold);
-            color: var(--bg);
-            border-color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(107,69,16,0.22);
-          }
-          .hero-btn:active { transform: translateY(0); }
-          @keyframes arrowBounce {
-            0%, 100% { transform: translateY(0); opacity: 0.35; }
-            50%       { transform: translateY(6px); opacity: 0.75; }
-          }
-          .hero-arrow {
-            color: var(--gold2);
-            cursor: pointer;
-            opacity: 0.4;
-            animation: arrowBounce 2.2s ease-in-out infinite, fadeIn 1s ease 1.8s both;
-            transition: opacity 0.2s;
-          }
-          .hero-arrow:hover { opacity: 1; }
-          @keyframes heroOut {
-            0%   { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-          }
-          .hero-out {
-            animation: heroOut 0.5s ease forwards;
-            pointer-events: none;
-          }
-        `;
-
-        function Highlighted({ text, query }) {
-          if (!query || !text) return <>{text}</>;
-          const norm = (s) => s.toLowerCase().replace(/ё/g, "е").replace(/й/g, "и").replace(/[ъь]/g, "");
-          const nq = norm(query);
-          const nt = norm(text);
-          const idx = nt.indexOf(nq);
-          if (idx === -1) return <>{text}</>;
-          return (
-            <>
-              {text.slice(0, idx)}
-              <mark className="hl">{text.slice(idx, idx + query.length)}</mark>
-              {text.slice(idx + query.length)}
-            </>
-          );
+  return (
+    <div className={`dish-card${isOpen ? " card-open" : ""}`} onClick={onToggle}>
+      <div className="card-img-wrap">
+        {item.photo
+          ? <img className="card-img loaded" src={item.photo} alt={item.name} />
+          : (
+            <div className="card-placeholder">
+              <div className="card-placeholder-letter">{letter}</div>
+              <div className="card-placeholder-label">фото скоро</div>
+            </div>
+          )
         }
+        {isOpen && item.desc && (
+          <div className="card-desc-overlay">
+            <p>{item.desc}</p>
+          </div>
+        )}
+      </div>
+      <div className="card-body">
+        <span className="card-name">{item.name}</span>
+        <span className="card-price">{item.price} р.</span>
+      </div>
+    </div>
+  );
+}
 
-        function ManilovMenu() {
-          const [search, setSearch] = React.useState("");
-          const [activeCat, setActiveCat] = React.useState(null);
-          const [openSec, setOpenSec] = React.useState(null);
-          const [openItem, setOpenItem] = React.useState(null);
-          const qIdx = React.useRef(Math.floor(Math.random() * quotes.length)).current;
-          const menuRef = React.useRef(null);
-          const [heroVisible, setHeroVisible] = React.useState(true);
-          const [heroOut, setHeroOut] = React.useState(false);
+function Highlighted({ text, query }) {
+  if (!query || !text) return <>{text}</>;
+  const norm = (s) => s.toLowerCase().replace(/ё/g,"е").replace(/й/g,"и").replace(/[ъь]/g,"");
+  const idx = norm(text).indexOf(norm(query));
+  if (idx === -1) return <>{text}</>;
+  return <>{text.slice(0,idx)}<mark className="hl">{text.slice(idx,idx+query.length)}</mark>{text.slice(idx+query.length)}</>;
+}
 
-          const scrollToMenu = () => {
-            setHeroOut(true);
-            setTimeout(() => {
-              setHeroVisible(false);
-              window.scrollTo({ top: 0, behavior: "instant" });
-            }, 550);
-          };
+function ManilovMenu() {
+  const [search, setSearch] = useState("");
+  const [activeCat, setActiveCat] = useState(null);
+  const [openSec, setOpenSec] = useState(null);
+  const [openItem, setOpenItem] = useState(null);
+  const [heroVisible, setHeroVisible] = useState(true);
+  const [heroOut, setHeroOut] = useState(false);
+  const menuRef = useRef(null);
+  const qIdx = useRef(Math.floor(Math.random() * quotes.length)).current;
 
-          const norm = (s) =>
-            s.toLowerCase().replace(/ё/g, "е").replace(/й/g, "и").replace(/[ъь]/g, "");
+  const scrollToMenu = () => {
+    setHeroOut(true);
+    setTimeout(() => { setHeroVisible(false); window.scrollTo({ top: 0, behavior: "instant" }); }, 550);
+  };
 
-          const SYNONYMS = {
-            "напитки": ["напитки", "кофе", "чаи", "чай", "сок", "лимонад", "коктеил", "морс", "квас", "сбитен", "взвар", "шоколад", "глинтвеин"],
-            "напиток": ["напитки", "кофе", "чаи", "чай", "сок", "лимонад", "коктеил", "морс", "квас"],
-            "закуска": ["закуски", "закусон", "холодные", "кушана"],
-            "закуски": ["закуски", "закусон", "холодные", "горяч", "кушана"],
-            "салат":   ["салат", "оливе", "селд", "баклажан", "барин"],
-            "суп":     ["суп", "солянк", "борщ", "щи", "уха", "похлебк", "крем"],
-            "горячее": ["горяч", "жарк", "котлет", "пельмен", "беф", "голубц", "кролик"],
-            "основное":["котлет", "пожарск", "пельмен", "беф", "щеки", "голубц", "кролик", "рагу"],
-            "мясо":    ["говядин", "свинин", "куриц", "котлет", "пельмен", "беф", "голубц", "кролик"],
-            "рыба":    ["судак", "горбуш", "рыб", "щука", "уха", "чир"],
-            "десерт":  ["десерт", "торт", "шарлотк", "коврижк", "морковн", "прага", "наполеон", "медовик", "эклер", "мороженое"],
-            "сладкое": ["десерт", "торт", "шарлотк", "коврижк", "медовик", "мороженое", "вишн", "варени"],
-            "чай":     ["чаи", "чай", "нечаиные", "иван", "ассам", "эрл", "кавказск", "сенча", "улун", "малиновы", "облепихов", "хвоин", "яблочны", "сибирск", "таежны", "зелены"],
-            "кофе":    ["кофе", "эспрессо", "капучино", "латте", "гляссе", "американо"],
-            "завтрак": ["утренние", "яичниц", "яицо", "каша", "блины", "сырники", "вареники"],
-            "утро":    ["утренние", "яичниц", "яицо", "каша", "блины", "сырники"],
-            "каша":    ["каша", "гурьевск", "овсян", "рисов"],
-            "блины":   ["блины", "блин"],
-            "гриб":    ["гриб", "шампин"],
-            "горшочек":["горшочк", "горшочках", "жаркое", "говядина", "судак"],
-            "горшок":  ["горшочк", "горшочках"],
-            "банкет":  ["банкет", "щука", "утка", "курник", "пирог", "крокенбуш"],
-            "хлеб":    ["хлеб", "ржаной", "пшеничны", "мясно"],
-            "гарнир":  ["гарнир", "гречка", "пюре", "рис", "капуст"],
-            "овощи":   ["овощн", "капуст", "корзина", "зелен"],
-            "сок":     ["сок", "апельсин", "греипфрут", "морковны", "яблочны"],
-            "лимонад": ["лимонад", "цитрусов", "клубничны", "мятно", "облепихов"],
-            "коктейл": ["коктеил", "ванильны", "клубничны", "шоколадны"],
-            "молоко":  ["молочны", "коктеил"],
-            "свинина": ["свинин", "сало", "буженин"],
-            "говядина":["говядин", "беф", "щеки"],
-            "курица":  ["куриц", "курин", "котлет", "пожарск", "рагу", "потрошк"],
-            "пельмени":["пельмен"],
-            "борщ":    ["борщ"],
-            "солянка": ["солянк"],
-            "сковородка": ["сковородк", "жарех", "скоблянк", "русскаа", "чир"],
-          };
+  const norm = (s) => s.toLowerCase().replace(/ё/g,"е").replace(/й/g,"и").replace(/[ъь]/g,"");
 
-          const expandQuery = (query) => {
-            const n = norm(query).trim();
-            for (const [key, expansions] of Object.entries(SYNONYMS)) {
-              if (n.includes(key) || key.includes(n)) return expansions;
-            }
-            return null;
-          };
+  const SYNONYMS = {
+    "напитки":["напитки","кофе","чаи","чай","сок","лимонад","коктеил","морс","квас","сбитен","взвар","шоколад","глинтвеин"],
+    "закуска":["закуски","закусон","холодные","кушана"],
+    "закуски":["закуски","закусон","холодные","горяч","кушана"],
+    "салат":["салат","оливе","селд","баклажан","барин"],
+    "суп":["суп","солянк","борщ","щи","уха","похлебк","крем"],
+    "горячее":["горяч","жарк","котлет","пельмен","беф","голубц","кролик"],
+    "мясо":["говядин","свинин","куриц","котлет","пельмен","беф","голубц","кролик"],
+    "рыба":["судак","горбуш","рыб","щука","уха","чир"],
+    "десерт":["десерт","торт","шарлотк","коврижк","прага","наполеон","медовик","эклер","мороженое"],
+    "чай":["чаи","чай","нечаиные","иван","ассам","эрл","кавказск","сенча","улун","малиновы","облепихов","яблочны","сибирск","таежны"],
+    "кофе":["кофе","эспрессо","капучино","латте","гляссе","американо"],
+    "завтрак":["утренние","яичниц","яицо","каша","блины","сырники","вареники"],
+    "гарнир":["гарнир","гречка","пюре","рис","капуст"],
+    "сок":["сок","апельсин","греипфрут","морковны","яблочны"],
+    "лимонад":["лимонад","цитрусов","клубничны","мятно","облепихов"],
+    "коктейл":["коктеил","ванильны","клубничны","шоколадны"],
+    "банкет":["банкет","щука","утка","курник","пирог","крокенбуш"],
+    "хлеб":["хлеб","ржаной","пшеничны","мясно"],
+  };
 
-          const matchesQuery = (haystack, query) => {
-            const h = norm(haystack);
-            const words = norm(query).trim().split(/\s+/).filter(Boolean);
-            if (words.every((w) => h.includes(w))) return true;
-            const expanded = expandQuery(query);
-            if (expanded) return expanded.some((syn) => h.includes(syn));
-            return false;
-          };
+  const matchesQuery = (haystack, query) => {
+    const h = norm(haystack);
+    const words = norm(query).trim().split(/\s+/).filter(Boolean);
+    if (words.every(w => h.includes(w))) return true;
+    const n = norm(query).trim();
+    for (const [key, exp] of Object.entries(SYNONYMS)) {
+      if (n.includes(key) || key.includes(n)) return exp.some(s => h.includes(s));
+    }
+    return false;
+  };
 
-          const searchResults = search.trim()
-            ? menuData.flatMap((cat) => {
-                const catMatches = matchesQuery(cat.title, search);
-                const matchedItems = cat.items.filter(
-                  (it) => catMatches || matchesQuery(`${it.name} ${it.desc}`, search)
-                );
-                return matchedItems.length > 0 ? [{ catTitle: cat.title, items: matchedItems }] : [];
-              })
-            : null;
+  const searchResults = search.trim()
+    ? menuData.flatMap(cat => {
+        const catMatch = matchesQuery(cat.title, search);
+        const matched = cat.items.filter(it => catMatch || matchesQuery(`${it.name} ${it.desc}`, search));
+        return matched.length > 0 ? [{ catTitle: cat.title, items: matched }] : [];
+      })
+    : null;
 
-          const totalFound = searchResults ? searchResults.reduce((a, g) => a + g.items.length, 0) : 0;
-          const sections = activeCat ? menuData.filter((c) => c.id === activeCat) : menuData;
+  const totalFound = searchResults ? searchResults.reduce((a,g) => a + g.items.length, 0) : 0;
+  const sections = activeCat ? menuData.filter(c => c.id === activeCat) : menuData;
+  const toggleSec = id => { setOpenSec(p => p === id ? null : id); setOpenItem(null); };
+  const toggleItem = key => setOpenItem(p => p === key ? null : key);
+  const q = quotes[qIdx];
 
-          const toggleSec = (id) => { setOpenSec((p) => (p === id ? null : id)); setOpenItem(null); };
-          const toggleItem = (key) => setOpenItem((p) => (p === key ? null : key));
+  return <>
+    <style>{CSS}</style>
+    <div className="wrap">
 
-          const q = quotes[qIdx];
+      {/* HERO */}
+      {heroVisible && (
+        <div className={`hero${heroOut ? " hero-out" : ""}`}>
+          <div className="hero-bg" />
+          <div className="hero-content">
+            <div className="hero-tag">Тверь · кафе с традициями</div>
+            <div className="hero-logo">Манилов</div>
+            <div className="hero-rule"><span className="hero-dot" /></div>
+            <div className="hero-label">Меню кафе</div>
+            <div className="hero-quote">«{q.text}»</div>
+            <div className="hero-author">— {q.author}</div>
+            <button className="hero-btn" onClick={scrollToMenu}>Смотреть меню</button>
+            <div className="hero-arrow" onClick={scrollToMenu}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      )}
 
-          return (
-            <>
-              <style>{CSS}</style>
+      {/* ШАПКА */}
+      <div className="header">
+        <div className="htag">Тверь · кафе с традициями</div>
+        <div className="logo">Манилов</div>
+        <div className="logo-rule"><span className="logo-dot" /></div>
+        <div className="logo-sub">Меню</div>
+      </div>
 
-              <div className="wrap">
+      {/* ПОИСК */}
+      <div className="search-wrap" ref={menuRef}>
+        <div className="sfield">
+          <svg className="sicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input className="sinput" placeholder="Поиск: кофе, напитки, борщ, десерт…" value={search} onChange={e => setSearch(e.target.value)}/>
+          {search && <button className="sclear" onClick={() => setSearch("")}>✕</button>}
+        </div>
+        {!search && <div className="shint">Ищет по блюдам, описаниям и разделам меню</div>}
+      </div>
 
-                {/* HERO */}
-                {heroVisible && (
-                <div className={`hero${heroOut ? " hero-out" : ""}`}>
-                  <div className="hero-bg" />
-                  <div className="hero-content">
-                    <div className="hero-tag">Тверь · кафе с традициями</div>
-                    <div className="hero-logo">Манилов</div>
-                    <div className="hero-rule"><span className="hero-dot" /></div>
-                    <div className="hero-label">Меню кафе</div>
-                    <div className="hero-quote">«{q.text}»</div>
-                    <div className="hero-author">— {q.author}</div>
-                    <button className="hero-btn" onClick={scrollToMenu}>
-                      Смотреть меню
-                    </button>
-                    <div className="hero-arrow" onClick={scrollToMenu}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="6 9 12 15 18 9"/>
-                      </svg>
+      {/* ТАБЫ */}
+      {!search && (
+        <div className="tabs">
+          <button className={`tab${activeCat === null ? " on" : ""}`} onClick={() => setActiveCat(null)}>Всё меню</button>
+          {menuData.map(cat => (
+            <button key={cat.id} className={`tab${activeCat === cat.id ? " on" : ""}`}
+              onClick={() => setActiveCat(activeCat === cat.id ? null : cat.id)}>{cat.title}</button>
+          ))}
+        </div>
+      )}
+
+      {/* КОНТЕНТ */}
+      <div className="content">
+        {search ? (
+          <>
+            <div className="rlabel">{totalFound > 0 ? `Найдено: ${totalFound} позиций` : "Ничего не найдено"}</div>
+            {totalFound === 0
+              ? <div className="empty">По запросу «{search}» ничего не найдено<div className="empty-sub">Попробуйте другое слово</div></div>
+              : searchResults.map((group, gi) => (
+                  <div key={gi} className="sec rgroup" style={{ marginBottom: 7, animationDelay: `${gi * 0.06}s` }}>
+                    <div className="rcat-head">{group.catTitle}</div>
+                    <div className="cards-grid">
+                      {group.items.map((item, ii) => {
+                        const key = `sr-${gi}-${ii}`;
+                        return <DishCard key={key} item={item} isOpen={openItem === key} onToggle={() => item.desc && toggleItem(key)} />;
+                      })}
                     </div>
                   </div>
-                </div>
-                )}
-
-                {/* ПОИСК */}
-                <div className="search-wrap" ref={menuRef}>
-                  <div className="sfield">
-                    <svg className="sicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+                ))
+            }
+          </>
+        ) : (
+          sections.map((cat, ci) => {
+            const isOpen = openSec === cat.id || activeCat === cat.id;
+            return (
+              <div key={cat.id} className="sec" style={{ animationDelay: `${0.1 + ci * 0.045}s` }}>
+                <div className="sec-head" onClick={() => toggleSec(cat.id)}>
+                  <span className="sec-title">{cat.title}</span>
+                  <div className="sec-right">
+                    <span className="sec-count">{cat.items.length} позиций</span>
+                    <svg className={`chevron${isOpen ? " open" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9"/>
                     </svg>
-                    <input
-                      className="sinput"
-                      placeholder="Поиск: кофе, напитки, борщ, десерт…"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                    />
-                    {search && <button className="sclear" onClick={() => setSearch("")}>✕</button>}
                   </div>
-                  {!search && <div className="shint">Ищет по блюдам, описаниям и разделам меню</div>}
                 </div>
-
-                {/* ТАБЫ */}
-                {!search && (
-                  <div className="tabs">
-                    <button className={`tab${activeCat === null ? " on" : ""}`} onClick={() => setActiveCat(null)}>
-                      Всё меню
-                    </button>
-                    {menuData.map((cat) => (
-                      <button
-                        key={cat.id}
-                        className={`tab${activeCat === cat.id ? " on" : ""}`}
-                        onClick={() => setActiveCat(activeCat === cat.id ? null : cat.id)}
-                      >
-                        {cat.title}
-                      </button>
-                    ))}
+                <div className={`itemlist${isOpen ? " open" : ""}`}>
+                  <div className="cards-grid">
+                    {cat.items.map((item, ii) => {
+                      const key = `${cat.id}-${ii}`;
+                      return <DishCard key={key} item={item} isOpen={openItem === key} onToggle={() => toggleItem(key)} />;
+                    })}
                   </div>
-                )}
-
-                {/* КОНТЕНТ */}
-                <div className="content">
-                  {search ? (
-                    <>
-                      <div className="rlabel">
-                        {totalFound > 0 ? `Найдено: ${totalFound} позиций` : "Ничего не найдено"}
-                      </div>
-                      {totalFound === 0 ? (
-                        <div className="empty">
-                          По запросу «{search}» ничего не найдено
-                          <div className="empty-sub">Попробуйте другое слово</div>
-                        </div>
-                      ) : (
-                        searchResults.map((group, gi) => (
-                          <div
-                            key={gi}
-                            className="sec rgroup"
-                            style={{ marginBottom: 7, animationDelay: `${gi * 0.06}s` }}
-                          >
-                            <div className="rcat-head">{group.catTitle}</div>
-                            {group.items.map((item, ii) => {
-                              const key = `sr-${gi}-${ii}`;
-                              return (
-                                <div
-                                  key={key}
-                                  className={`item${openItem === key ? " open" : ""}`}
-                                  onClick={() => item.desc && toggleItem(key)}
-                                >
-                                  <div className="irow">
-                                    <span className="iname"><Highlighted text={item.name} query={search} /></span>
-                                    <span className="idots" />
-                                    <span className="iprice">{item.price} р.</span>
-                                  </div>
-                                  {item.desc && openItem === key && <div className="idesc">{item.desc}</div>}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        ))
-                      )}
-                    </>
-                  ) : (
-                    sections.map((cat, ci) => {
-                      const isOpen = openSec === cat.id || activeCat === cat.id;
-                      return (
-                        <div
-                          key={cat.id}
-                          className="sec"
-                          style={{ animationDelay: `${0.1 + ci * 0.045}s` }}
-                        >
-                          <div className="sec-head" onClick={() => toggleSec(cat.id)}>
-                            <span className="sec-title">{cat.title}</span>
-                            <div className="sec-right">
-                              <span className="sec-count">{cat.items.length} позиций</span>
-                              <svg className={`chevron${isOpen ? " open" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <polyline points="6 9 12 15 18 9" />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className={`itemlist${isOpen ? " open" : ""}`}>
-                            {cat.items.map((item, ii) => {
-                              const key = `${cat.id}-${ii}`;
-                              return (
-                                <div
-                                  key={key}
-                                  className={`item${openItem === key ? " open" : ""}`}
-                                  onClick={() => item.desc && toggleItem(key)}
-                                >
-                                  <div className="irow">
-                                    <span className="iname">{item.name}</span>
-                                    <span className="idots" />
-                                    <span className="iprice">{item.price} р.</span>
-                                  </div>
-                                  {item.desc && openItem === key && <div className="idesc">{item.desc}</div>}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })
-                  )}
                 </div>
-
-                {/* ПОДВАЛ */}
-                <div className="footer">
-                  <div className="footer-rule" />
-                  <div className="fnote">Банкеты и фуршеты по предварительному заказу</div>
-                  <div className="fsite">MANILOVKAFE.RU</div>
-                </div>
-
               </div>
-            </>
-          );
-        }
+            );
+          })
+        )}
+      </div>
 
-        // ЗАПУСКАЕМ ПРИЛОЖЕНИЕ
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<ManilovMenu />);
-    </script>
+      {/* ПОДВАЛ */}
+      <div className="footer">
+        <div className="footer-rule" />
+        <div className="fnote">Банкеты и фуршеты по предварительному заказу</div>
+        <div className="fsite">MANILOVKAFE.RU</div>
+      </div>
+
+    </div>
+  </>;
+}
+
+// ─── CSS ───────────────────────────────────────────────────────
+const CSS = `
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:      #f2e8d0;
+    --bg2:     #e8dbbe;
+    --bg3:     #daccaa;
+    --surface: #faf5e8;
+    --ink:     #1a0f04;
+    --ink2:    #2e1c08;
+    --ink3:    #5c3d18;
+    --gold:    #6b4510;
+    --gold2:   #8c5c18;
+    --line:    rgba(107,69,16,0.3);
+    --line2:   rgba(107,69,16,0.14);
+    --shadow:  rgba(26,15,4,0.12);
+  }
+
+  @keyframes headerIn  { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp    { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+  @keyframes shimmer   { 0%{background-position:-250% center} 100%{background-position:250% center} }
+  @keyframes ruleGrow  { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+  @keyframes secIn     { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes heroOut   { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-16px)} }
+  @keyframes arrowBounce { 0%,100%{transform:translateY(0);opacity:.35} 50%{transform:translateY(6px);opacity:.75} }
+  @keyframes cardIn    { from{opacity:0;transform:translateY(8px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+  @keyframes imgFadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes skelPulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+  .wrap {
+    min-height:100vh; background:var(--bg);
+    font-family:'PT Serif',Georgia,'Times New Roman',serif;
+    color:var(--ink); padding-bottom:80px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position:relative; min-height:100svh;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg2); overflow:hidden;
+    border-bottom:2px solid var(--line);
+  }
+  .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 70% 55% at 50% 38%,rgba(140,92,24,.07) 0%,transparent 70%); pointer-events:none; }
+  .hero::before,.hero::after { content:''; position:absolute; width:52px; height:52px; border-color:var(--line); border-style:solid; animation:fadeIn 1s ease .9s both; }
+  .hero::before { top:20px; left:20px; border-width:1px 0 0 1px; }
+  .hero::after  { bottom:20px; right:20px; border-width:0 1px 1px 0; }
+  .hero-out { animation:heroOut .5s ease forwards; pointer-events:none; }
+  .hero-content { position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding:56px 28px 48px; max-width:520px; width:100%; }
+  .hero-tag { font-size:.62rem; letter-spacing:.62em; color:var(--gold2); text-transform:uppercase; margin-bottom:24px; animation:fadeIn .8s ease .3s both; }
+  .hero-logo {
+    font-size:clamp(3.6rem,14vw,7rem); font-weight:700; letter-spacing:.06em; line-height:1;
+    background:linear-gradient(105deg,var(--ink) 0%,var(--ink) 32%,#b87c1a 50%,var(--ink) 68%,var(--ink) 100%);
+    background-size:220% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    animation:shimmer 2s ease .1s 1 both;
+  }
+  .hero-rule { display:flex; align-items:center; gap:12px; margin:18px 0 15px; width:180px; animation:ruleGrow .8s ease .65s both; transform-origin:center; }
+  .hero-rule::before,.hero-rule::after { content:''; flex:1; height:1px; background:var(--gold2); opacity:.45; }
+  .hero-dot { width:4px; height:4px; border-radius:50%; background:var(--gold2); opacity:.65; flex-shrink:0; }
+  .hero-label { font-size:.7rem; letter-spacing:.52em; color:var(--ink3); text-transform:uppercase; margin-bottom:38px; animation:fadeIn .8s ease .85s both; }
+  .hero-quote { font-style:italic; font-size:clamp(.94rem,2.5vw,1.06rem); color:var(--ink2); line-height:1.75; margin-bottom:7px; animation:fadeUp .8s ease 1s both; }
+  .hero-author { font-size:.67rem; letter-spacing:.3em; color:var(--gold); text-transform:uppercase; margin-bottom:44px; animation:fadeUp .8s ease 1.1s both; }
+  .hero-btn {
+    background:transparent; border:1px solid var(--line); color:var(--gold2);
+    font-family:'PT Serif',Georgia,serif; font-size:.8rem; letter-spacing:.42em; text-transform:uppercase;
+    padding:13px 38px; cursor:pointer; border-radius:1px; margin-bottom:36px;
+    transition:background .22s,color .22s,border-color .22s,transform .18s,box-shadow .22s;
+    animation:fadeUp .8s ease 1.3s both;
+  }
+  .hero-btn:hover { background:var(--gold); color:var(--bg); border-color:var(--gold); transform:translateY(-2px); box-shadow:0 6px 22px rgba(107,69,16,.22); }
+  .hero-btn:active { transform:translateY(0); }
+  .hero-arrow { color:var(--gold2); cursor:pointer; opacity:.4; animation:arrowBounce 2.2s ease-in-out infinite,fadeIn 1s ease 1.8s both; transition:opacity .2s; }
+  .hero-arrow:hover { opacity:1; }
+
+  /* ── ШАПКА ── */
+  .header { background:var(--bg2); border-bottom:2px solid var(--line); text-align:center; padding:36px 20px 28px; animation:headerIn .65s cubic-bezier(.22,.68,0,1.2) both; }
+  .htag { font-size:.68rem; letter-spacing:.5em; color:var(--gold2); text-transform:uppercase; margin-bottom:10px; animation:fadeIn .8s ease .4s both; }
+  .logo {
+    font-size:clamp(2.6rem,9vw,4.4rem); font-weight:700; letter-spacing:.06em; line-height:1.1;
+    background:linear-gradient(105deg,var(--ink) 0%,var(--ink) 38%,#c8942a 50%,var(--ink) 62%,var(--ink) 100%);
+    background-size:250% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    animation:shimmer 1.6s ease .1s 1 both;
+  }
+  .logo-rule { display:flex; align-items:center; justify-content:center; gap:10px; margin:10px auto; max-width:260px; overflow:hidden; }
+  .logo-rule::before,.logo-rule::after { content:''; flex:1; height:1px; background:var(--gold2); opacity:.5; transform-origin:center; animation:ruleGrow .7s ease .5s both; }
+  .logo-dot { width:4px; height:4px; border-radius:50%; background:var(--gold2); opacity:.7; animation:fadeIn .5s ease .9s both; }
+  .logo-sub { font-size:.72rem; letter-spacing:.45em; color:var(--ink3); text-transform:uppercase; animation:fadeIn .8s ease .6s both; }
+
+  /* ── ПОИСК ── */
+  .search-wrap { padding:18px 16px 10px; max-width:600px; margin:0 auto; animation:fadeUp .5s ease .6s both; }
+  .sfield { position:relative; }
+  .sicon { position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--gold2); pointer-events:none; width:15px; height:15px; transition:color .2s; }
+  .sfield:focus-within .sicon { color:var(--gold); }
+  .sinput { width:100%; background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:12px 38px 12px 42px; font-family:'PT Serif',Georgia,serif; font-size:1rem; color:var(--ink); outline:none; transition:border-color .25s,box-shadow .25s,background .2s; box-shadow:0 1px 4px var(--shadow); }
+  .sinput::placeholder { color:var(--ink3); opacity:.55; font-style:italic; }
+  .sinput:focus { border-color:var(--gold2); box-shadow:0 0 0 3px rgba(107,69,16,.1),0 1px 4px var(--shadow); background:#fff; }
+  .shint { margin-top:5px; font-size:.72rem; font-style:italic; color:var(--ink3); opacity:.65; padding-left:2px; }
+  .sclear { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--ink3); font-size:.9rem; padding:5px 6px; line-height:1; transition:color .18s,transform .15s; }
+  .sclear:hover { color:var(--gold2); transform:translateY(-50%) scale(1.2); }
+
+  /* ── ТАБЫ ── */
+  .tabs { display:flex; gap:4px; padding:6px 16px 14px; overflow-x:auto; scrollbar-width:none; animation:fadeUp .5s ease .7s both; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { flex-shrink:0; background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:5px 13px; font-family:'PT Serif',Georgia,serif; font-size:.84rem; color:var(--ink2); cursor:pointer; transition:all .15s; box-shadow:0 1px 3px var(--shadow); white-space:nowrap; }
+  .tab:hover { border-color:var(--gold2); color:var(--gold); transform:translateY(-1px); box-shadow:0 3px 8px var(--shadow); }
+  .tab.on { background:var(--gold); border-color:var(--gold); color:#fff; box-shadow:0 2px 7px rgba(107,69,16,.35); transform:translateY(-1px); }
+
+  /* ── КОНТЕНТ ── */
+  .content { max-width:680px; margin:0 auto; padding:0 14px; }
+
+  .rlabel { padding:10px 2px 12px; font-size:.7rem; letter-spacing:.35em; color:var(--ink3); text-transform:uppercase; border-bottom:1px solid var(--line2); margin-bottom:6px; animation:fadeIn .3s ease both; }
+  .rcat-head { padding:11px 16px 10px; font-size:1.05rem; font-weight:700; color:var(--ink); background:var(--bg2); border-bottom:1px solid var(--line2); }
+  .empty { text-align:center; padding:70px 20px; font-style:italic; color:var(--ink3); font-size:1.1rem; }
+  .empty-sub { margin-top:8px; font-size:.78rem; letter-spacing:.15em; opacity:.6; font-style:normal; }
+
+  /* ── РАЗДЕЛ ── */
+  .sec { background:var(--surface); border:1px solid var(--line2); border-radius:2px; margin-bottom:6px; overflow:hidden; box-shadow:0 1px 5px var(--shadow); animation:secIn .45s ease both; transition:box-shadow .2s; }
+  .sec:hover { box-shadow:0 3px 12px rgba(26,15,4,.16); }
+  .sec-head { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:13px 16px; background:var(--bg2); border-bottom:1px solid var(--line2); cursor:pointer; user-select:none; transition:background .18s; position:relative; overflow:hidden; }
+  .sec-head::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--gold2); transform:scaleY(0); transform-origin:bottom; transition:transform .22s ease; }
+  .sec-head:hover { background:var(--bg3); }
+  .sec-head:hover::before { transform:scaleY(1); }
+  .sec-title { font-size:clamp(.92rem,2.5vw,1.05rem); font-weight:700; color:var(--ink); flex:1; line-height:1.3; transition:color .18s; }
+  .sec-head:hover .sec-title { color:var(--gold); }
+  .sec-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .sec-count { font-size:.7rem; color:var(--ink3); letter-spacing:.08em; }
+  .chevron { width:13px; height:13px; color:var(--gold2); transition:transform .28s cubic-bezier(.34,1.56,.64,1),color .18s; flex-shrink:0; }
+  .chevron.open { transform:rotate(180deg); color:var(--gold); }
+
+  .itemlist { max-height:0; overflow:hidden; transition:max-height .42s cubic-bezier(.4,0,.2,1),opacity .28s ease; opacity:0; }
+  .itemlist.open { max-height:9999px; opacity:1; transition:max-height .55s cubic-bezier(.4,0,.2,1),opacity .32s ease .06s; }
+
+  /* ── СЕТКА КАРТОЧЕК ── */
+  .cards-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+    gap:10px;
+    padding:12px;
+  }
+
+  /* ── КАРТОЧКА БЛЮДА ── */
+  .dish-card {
+    background:var(--surface);
+    border:1px solid var(--line2);
+    border-radius:4px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:transform .18s, box-shadow .18s, border-color .18s;
+    animation:cardIn .3s ease both;
+    box-shadow:0 1px 4px var(--shadow);
+  }
+  .dish-card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 6px 18px rgba(26,15,4,.16);
+    border-color:rgba(107,69,16,.3);
+  }
+  .dish-card.card-open {
+    border-color:var(--gold2);
+    box-shadow:0 4px 16px rgba(107,69,16,.18);
+  }
+
+  .card-img-wrap {
+    position:relative;
+    width:100%;
+    padding-top:75%; /* 4:3 */
+    overflow:hidden;
+    background:var(--bg3);
+  }
+  .card-img {
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+  /* Placeholder когда фото нет */
+  .card-placeholder {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    gap:6px;
+    background:linear-gradient(145deg, var(--bg3) 0%, var(--bg2) 100%);
+  }
+  .card-placeholder-letter {
+    font-size:2.2rem; font-weight:700;
+    color:var(--gold2); opacity:.35;
+    font-family:'PT Serif',Georgia,serif;
+    line-height:1;
+    user-select:none;
+  }
+  .card-placeholder-label {
+    font-size:.58rem; letter-spacing:.28em;
+    color:var(--ink3); opacity:.4;
+    text-transform:uppercase;
+    user-select:none;
+  }
+
+  /* описание поверх фото при открытии */
+  .card-desc-overlay {
+    position:absolute; inset:0;
+    background:rgba(26,15,4,.72);
+    display:flex; align-items:center; justify-content:center;
+    padding:10px;
+    animation:fadeIn .22s ease both;
+  }
+  .card-desc-overlay p {
+    font-style:italic; font-size:.76rem; color:rgba(245,237,216,.9);
+    line-height:1.55; text-align:center;
+  }
+
+  .card-body {
+    padding:8px 10px 9px;
+    display:flex; flex-direction:column; gap:3px;
+  }
+  .card-name {
+    font-size:.84rem; font-weight:700; color:var(--ink);
+    line-height:1.35;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .card-price {
+    font-size:.9rem; font-weight:700; color:var(--gold);
+    font-variant-numeric:tabular-nums;
+  }
+
+  mark.hl { background:rgba(140,92,24,.22); border-radius:2px; padding:0 1px; }
+
+  .rgroup { animation:secIn .35s ease both; }
+
+  .footer { text-align:center; margin-top:52px; padding:28px 20px 20px; }
+  .footer-rule { height:1px; background:linear-gradient(90deg,transparent,var(--gold2),transparent); max-width:180px; margin:0 auto 16px; animation:ruleGrow .7s ease .5s both; transform-origin:center; }
+  .fnote { font-size:.74rem; letter-spacing:.3em; color:var(--ink3); text-transform:uppercase; }
+  .fsite { margin-top:7px; font-size:.88rem; letter-spacing:.22em; color:var(--gold2); font-weight:700; transition:color .2s; }
+  .fsite:hover { color:var(--gold); }
+
+  ::-webkit-scrollbar { width:4px; }
+  ::-webkit-scrollbar-track { background:var(--bg2); }
+  ::-webkit-scrollbar-thumb { background:var(--gold2); border-radius:2px; }
+`;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ManilovMenu />);
+</script>
 </body>
 </html>
