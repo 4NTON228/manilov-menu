@@ -371,6 +371,13 @@ function ManilovMenu() {
     return () => clearTimeout(t);
   }, [search]);
 
+  // Обновляем позицию дропдауна при ресайзе
+  useEffect(() => {
+    const handler = () => { if (showDropdown) updateDropPos(); };
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, [showDropdown]);
+
 
   const handleSearchSubmit = (q) => {
     setSuggestions([]);
@@ -450,7 +457,7 @@ function ManilovMenu() {
             value={search}
             onChange={handleInputChange}
             onFocus={() => { updateDropPos(); setShowDropdown(true); }}
-            onKeyDown={e => { if (e.key === 'Escape') handleClear(); }}
+            onKeyDown={e => { if (e.key === 'Escape') handleClear(); if (e.key === 'Enter') { setSuggestions([]); setShowDropdown(false); inputRef.current?.blur(); } }}
             autoComplete="off"
           />
           {search && (
@@ -533,7 +540,7 @@ function ManilovMenu() {
                   <div className="cards-grid">
                     {cat.items.map((item, ii) => {
                       const key = `${cat.id}-${ii}`;
-                      return <DishCard key={key} item={item} isOpen={openItem === key} onToggle={() => toggleItem(key)} />;
+                      return <DishCard key={key} item={item} isOpen={openItem === key} onToggle={() => item.desc && toggleItem(key)} />;
                     })}
                   </div>
                 </div>
@@ -763,6 +770,7 @@ const CSS = `
     position:absolute; inset:0;
     width:100%; height:100%;
     object-fit:cover;
+    animation:imgFadeIn .35s ease both;
   }
   /* Placeholder когда фото нет */
   .card-placeholder {
